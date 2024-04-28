@@ -45,12 +45,12 @@ export default [
       },
     ],
   },
-  {
-    name: 'Song Lists',
-    icon: '/icons/music-note.png',
-    path: '/list',
-    component: './SongList',
-  },
+  // {
+  //   name: 'Song Lists',
+  //   icon: '/icons/music-note.png',
+  //   path: '/list',
+  //   component: './SongList',
+  // },
   {
     name: 'Categories',
     path: '/Categories',
