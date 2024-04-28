@@ -53,20 +53,20 @@ export default [
   // },
   {
     name: 'Categories',
-    path: '/Categories',
+    path: '/categories',
     component: './Categories',
     layout: false,
   },
   {
     name: 'Category Play List',
-    path: '/Categories/PlayList',
+    path: '/categories/playList',
     component: './Categories/CategoryPlayList',
     layout: false,
   },
   {
     name: 'Users',
     icon: '/icons/team.png',
-    path: '/Users',
+    path: '/users',
     component: './Account/users',
     layout: false,
   },

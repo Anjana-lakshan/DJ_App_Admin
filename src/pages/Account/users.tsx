@@ -30,6 +30,7 @@ const TableList: React.FC = () => {
         <h3>Registered users</h3>
         <p style={{
             color:"#B6B6B6",
+            fontSize:'12px'
           }}>Add tracks to the playlist</p>
        
         <List

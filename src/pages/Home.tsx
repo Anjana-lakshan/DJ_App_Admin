@@ -3,6 +3,7 @@ import { ProCard, ProFormText } from '@ant-design/pro-components';
 import { ConfigProvider } from 'antd';
 import React, { useEffect, useState } from 'react';
 import PlayList from './Home/Playlist';
+import { history } from '@umijs/max';
 
 const Home: React.FC = () => {
   const [dataSource, setDataSource] = useState(null);
@@ -18,6 +19,16 @@ const Home: React.FC = () => {
   }, []);
 
   type DataItem = (typeof dataSource)[number];
+
+  const handleClickUsers = () => {
+    history.push('/users');
+  };
+  const handleClickCategory = () => {
+    history.push('/categories');
+  };
+  const handleClickPlaylist = () => {
+    history.push('/users');
+  };
 
   return (
     <ConfigProvider
@@ -49,14 +60,14 @@ const Home: React.FC = () => {
         `}
       </style>
       <ProCard gutter={20} title="" style={{ background: 'transparent' }}>
-        <ProCard colSpan={12} layout="center" bordered>
+        <ProCard colSpan={12} layout="center" bordered onClick={handleClickUsers}>
           Users
         </ProCard>
-        <ProCard colSpan={12} layout="center" bordered>
+        <ProCard colSpan={12} layout="center" bordered onClick={handleClickPlaylist}>
           Playlist
         </ProCard>
       </ProCard>
-      <ProCard gutter={20} title="" style={{ background: 'transparent' }}>
+      <ProCard gutter={20} title="" style={{ background: 'transparent' }} onClick={handleClickCategory}>
         <ProCard colSpan={12} layout="center" bordered>
           Categories
         </ProCard>

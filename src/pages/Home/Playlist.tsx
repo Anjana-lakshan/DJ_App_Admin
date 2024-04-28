@@ -33,7 +33,7 @@ const PlayList: React.FC = () => {
         style={{
           height: 300,
           overflow: 'auto',
-          padding: '0 16px',
+          padding: '0 7px',
           // border: '1px solid rgba(140, 140, 140, 0.35)',
         }}
       >

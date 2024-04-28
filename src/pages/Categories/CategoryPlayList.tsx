@@ -97,6 +97,7 @@ export default () => {
           <p
             style={{
               color: '#B6B6B6',
+              fontSize:'12px'
             }}
           >
             Add tracks to the playlist

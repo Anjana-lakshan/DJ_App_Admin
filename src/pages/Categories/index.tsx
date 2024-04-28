@@ -1,6 +1,7 @@
 import { getAuthspot } from '@/services/ant-design-pro/api';
 import { Card, ConfigProvider, List } from 'antd';
 import React, { useEffect } from 'react';
+import { history } from '@umijs/max';
 
 const data = [
   {
@@ -29,6 +30,10 @@ const Categories: React.FC = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const handleClickCategory = () => {
+    history.push('/categories/playList');
+  };
 
   return (
     <ConfigProvider
@@ -77,6 +82,7 @@ const Categories: React.FC = () => {
                   backgroundColor: '#C2B0D8',
                   textAlign: 'center',
                 }}
+                onClick={handleClickCategory}
                 cover={
                   <img
                     alt="example"
