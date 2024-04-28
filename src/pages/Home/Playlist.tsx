@@ -1,6 +1,6 @@
 import { getSongs } from '@/services/ant-design-pro/api';
 import { DeleteTwoTone } from '@ant-design/icons';
-import { Divider, List } from 'antd';
+import { Avatar, Divider, List } from 'antd';
 import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
@@ -51,7 +51,7 @@ const PlayList: React.FC = () => {
             renderItem={(item) => (
               <List.Item key={item.songName}>
                 <List.Item.Meta
-                  // avatar={<Avatar src={item.picture.large} />}
+                  avatar={<Avatar src={item.imageUrl} />}
                   title={<a href="">{item.songName}</a>}
                   description={item.artistName}
                 />
