@@ -23,8 +23,8 @@ export default [
     ],
   },
   {
-    path: '/welcome',
-    name: 'Play Lists',
+    path: '/home',
+    name: 'Home',
     icon: '/icons/music.png',
     component: './Home',
   },
@@ -58,10 +58,17 @@ export default [
     layout: false,
   },
   {
+    name: 'Category Play List',
+    path: '/Categories/PlayList',
+    component: './Categories/CategoryPlayList',
+    layout: false,
+  },
+  {
     name: 'Users',
     icon: '/icons/team.png',
     path: '/Users',
     component: './Account/users',
+    layout: false,
   },
   {
     path: '/',

@@ -1,15 +1,11 @@
-
 import { getSongs } from '@/services/ant-design-pro/api';
-import {  ProCard, ProFormText, ProList } from '@ant-design/pro-components';
-import { Space, Tag } from 'antd';
+import { ProCard, ProFormText } from '@ant-design/pro-components';
+import { ConfigProvider } from 'antd';
 import React, { useEffect, useState } from 'react';
 import PlayList from './Home/Playlist';
 
 const Home: React.FC = () => {
-
-    const [dataSource, setDataSource] = useState(null);
-
-
+  const [dataSource, setDataSource] = useState(null);
 
   const fetchData = () => {
     getSongs().then((response) => {
@@ -24,8 +20,14 @@ const Home: React.FC = () => {
   type DataItem = (typeof dataSource)[number];
 
   return (
-    <>
-     <style>
+    <ConfigProvider
+      theme={{
+        token: {
+          fontFamily: 'Segoe UI',
+        },
+      }}
+    >
+      <style>
         {`
           .ant-pro-card {
             background-color: #C2B0D8;
@@ -46,27 +48,25 @@ const Home: React.FC = () => {
           }
         `}
       </style>
-    <ProCard gutter={20} title="" style={{ background:'transparent' , }} >
-    <ProCard colSpan={12} layout="center" bordered >
-      Users
-    </ProCard>
-    <ProCard colSpan={12} layout="center" bordered >
-      Playlist
-    </ProCard>
-    
-  </ProCard>
-  <ProCard gutter={20} title="" style={{ background:'transparent' }}>
-  <ProCard colSpan={12} layout="center" bordered >
-   Categories
-  </ProCard>
-  <ProCard colSpan={12} layout="center" bordered >
-    New release
-  </ProCard>
-  
-</ProCard>
-<ProFormText width="md" name="name" label="" placeholder="Search your preferred songs!" />
-<PlayList/>
-</>
+      <ProCard gutter={20} title="" style={{ background: 'transparent' }}>
+        <ProCard colSpan={12} layout="center" bordered>
+          Users
+        </ProCard>
+        <ProCard colSpan={12} layout="center" bordered>
+          Playlist
+        </ProCard>
+      </ProCard>
+      <ProCard gutter={20} title="" style={{ background: 'transparent' }}>
+        <ProCard colSpan={12} layout="center" bordered>
+          Categories
+        </ProCard>
+        <ProCard colSpan={12} layout="center" bordered>
+          New release
+        </ProCard>
+      </ProCard>
+      <ProFormText width="md" name="name" label="" placeholder="Search your preferred songs!" />
+      <PlayList />
+    </ConfigProvider>
   );
 };
 
