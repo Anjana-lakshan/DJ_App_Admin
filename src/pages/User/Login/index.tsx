@@ -51,7 +51,7 @@ const useStyles = createStyles(({ token }) => {
       flexDirection: 'column',
       height: '100vh',
       overflow: 'auto',
-      background: `linear-gradient(to right, #bb41e0, #5ad9f2 )`,
+      background: `linear-gradient(to right, #5e42ad, #0F0C39 )`,
       // backgroundImage:
       //   "url('https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/V-_oS6r-i7wAAAAAAAAAAAAAFl94AQBr')",
       backgroundSize: '100% 100%',
@@ -150,7 +150,16 @@ const Login: React.FC = () => {
   const { status, type: loginType } = userLoginState;
 
   return (
-    <ConfigProvider locale={en_US}>
+    <ConfigProvider locale={en_US}
+    theme={{
+      token: {
+        // Seed Token
+        colorPrimary: '#D635A9',
+
+      },
+    }}
+    >
+   
       <div className={styles.container}>
         <Helmet>
           <title>
@@ -174,8 +183,8 @@ const Login: React.FC = () => {
               maxWidth: '75vw',
               color: 'white',
             }}
-            logo={<img alt="logo" src="/logo.svg" />}
-            title="DJ App Admin"
+            logo={<img alt="logo" src="/logo_with_text.png" />}
+            // title="DJ App Admin"
             subTitle={''}
             // initialValues={{
             //   autoLogin: true,
@@ -192,7 +201,7 @@ const Login: React.FC = () => {
               await handleSubmit(values as API.LoginParams);
             }}
           >
-            <Tabs
+            {/* <Tabs
               activeKey={type}
               onChange={setType}
               centered
@@ -205,15 +214,15 @@ const Login: React.FC = () => {
                   }),
                   style: { color: 'white' },
                 },
-                // {
-                //   key: 'mobile',
-                //   label: intl.formatMessage({
-                //     id: 'pages.login.phoneLogin.tab',
-                //     defaultMessage: '手机号登录',
-                //   }),
-                // },
+                {
+                  key: 'mobile',
+                  label: intl.formatMessage({
+                    id: 'pages.login.phoneLogin.tab',
+                    defaultMessage: '手机号登录',
+                  }),
+                },
               ]}
-            />
+            /> */}
 
             {status === 'error' && loginType === 'account' && (
               <LoginMessage
@@ -359,18 +368,26 @@ const Login: React.FC = () => {
                 marginBottom: 24,
               }}
             >
-              <ProFormCheckbox noStyle name="autoLogin">
+              <ProFormCheckbox noStyle name="autoLogin" style={{color:'#ffff'}}>
                 <FormattedMessage id="pages.login.rememberMe" defaultMessage="自动登录" />
               </ProFormCheckbox>
-              <a
-                style={{
-                  float: 'right',
-                }}
-              >
-                {/* <FormattedMessage id="pages.login.forgotPassword" defaultMessage="忘记密码" /> */}
-              </a>
+              
             </div>
+            <div
+              style={{
+                marginBottom: 24,
+                marginTop: 20,
+                alignItems:'right'
+              }}
+            >
+          <a
+                style={{color:'#ffff',float: 'right'}}
+              >
+                <FormattedMessage id="pages.login.forgotPassword" defaultMessage="Forgot Password?" />
+              </a>
+              </div>
           </LoginForm>
+          
         </div>
         {/* <Footer /> */}
       </div>
