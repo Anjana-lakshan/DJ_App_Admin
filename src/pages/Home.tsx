@@ -1,4 +1,4 @@
-import { getSongs } from '@/services/ant-design-pro/api';
+import { getSongs, getspotifyAuth } from '@/services/ant-design-pro/api';
 import { ProCard, ProFormText } from '@ant-design/pro-components';
 import { ConfigProvider } from 'antd';
 import React, { useEffect, useState } from 'react';
@@ -12,6 +12,7 @@ const Home: React.FC = () => {
     getSongs().then((response) => {
       setDataSource(response.data.songs);
     });
+    getspotifyAuth()
   };
 
   useEffect(() => {

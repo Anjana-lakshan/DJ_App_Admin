@@ -54,18 +54,24 @@ export default [
   {
     name: 'Categories',
     path: '/categories',
-    component: './Categories',
+    component: './Categories/index',
     layout: false,
   },
   {
     name: 'Category Play List',
-    path: '/categories/playList',
+    path: '/categories/playList/:categoryid/:categoryname',
     component: './Categories/CategoryPlayList',
     layout: false,
   },
   {
+    name: 'Play List Songs',
+    path: '/categories/playList/:categoryid/:categoryname/songs/:playlistid/:playlistname',
+    component: './Categories/PlayListSong',
+    layout: false,
+  },
+  {
     name: 'Users',
-    icon: '/icons/team.png',
+    // icon: '/icons/team.png',
     path: '/users',
     component: './Account/users',
     layout: false,

@@ -87,11 +87,11 @@ export async function getSongs(
   });
 }
 
-/** GET Users */
-export async function getAuthspot(
+/** GET Spotify Auth */
+export async function getspotifyAuth(
 ) {
   const token = getToken();
-  return request<API.Customers>(`http://localhost:3000/spAuth`, {
+  return request<API.Customers>(`http://localhost:3000/spotifyAuth`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -102,6 +102,52 @@ export async function getAuthspot(
   });
 }
 
+/** GET AllCategories */
+export async function getAllCategories(
+) {
+  const token = getToken();
+  return request<API.Customers>(`${API_URL}/songs/allcategories`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+
+
+  });
+}
+
+/** GET AllCategoriesPlaylist */
+export async function getAllCategoriesPlaylist(
+  id:string
+) {
+  const token = getToken();
+  return request<API.Customers>(`${API_URL}/songs/categories/${id}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+
+
+  });
+}
+
+/** GET AllCategoriesPlaylist Songs */
+export async function getAllCategoriesPlaylistSongs(
+  id:string
+) {
+  const token = getToken();
+  return request<API.Customers>(`${API_URL}/songs/categoryplaylists/${id}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+
+
+  });
+}
 
 /** 此处后端没有提供注释 GET /api/notices */
 export async function getNotices(options?: { [key: string]: any }) {

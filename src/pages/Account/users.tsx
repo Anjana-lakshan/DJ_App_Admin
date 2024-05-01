@@ -11,7 +11,7 @@ const TableList: React.FC = () => {
 
   const fetchData = () => {
     getUsers().then((response) => {
-      setDataSource(response);
+      setDataSource(response.users);
     });
   };
 
