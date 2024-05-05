@@ -62,7 +62,7 @@ const Home: React.FC = () => {
       </style>
       <ProCard gutter={20} title="" style={{ background: 'linear-gradient(to right, #5e42ad, #0F0C39)' }}>
   <ProCard colSpan={12} layout="center" bordered onClick={handleClickUsers}>
-    Users
+    Users1
   </ProCard>
   <ProCard colSpan={12} layout="center" bordered onClick={handleClickPlaylist}>
     Playlist

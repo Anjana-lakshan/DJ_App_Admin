@@ -2,6 +2,7 @@
 /* eslint-disable */
 import env from '@/constants/env';
 import { request } from '@umijs/max';
+import { message } from 'antd';
 
 // const API_URL = process.env.API_URL;
 const { API_URL } = env;
@@ -146,6 +147,28 @@ export async function getAllCategoriesPlaylistSongs(
     },
 
 
+  });
+}
+
+/** Update Playlist */
+export async function addSongs(
+  body?: { [key: string]: any },
+) {
+  const token = getToken();
+  return request(`${API_URL}/songs/addtracks`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    data: body,
+  }).then((response) => {
+    if (response.errorMessage === null) {
+      message.success(response.message).then(() => {
+      });
+    } else {
+      message.error(response.errorMessage);
+    }
   });
 }
 

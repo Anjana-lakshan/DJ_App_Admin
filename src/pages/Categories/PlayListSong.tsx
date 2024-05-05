@@ -1,7 +1,7 @@
-import { getAllCategoriesPlaylistSongs } from '@/services/ant-design-pro/api';
+import { addSongs, getAllCategoriesPlaylistSongs } from '@/services/ant-design-pro/api';
 import { ProList } from '@ant-design/pro-components';
 import { useParams } from '@umijs/max';
-import { Button } from 'antd';
+import { Button, message } from 'antd';
 import type { Key } from 'react';
 import { useEffect, useState } from 'react';
 
@@ -31,8 +31,21 @@ export default () => {
   }, []);
 
   const handleSelectAll = () => {
-    const allKeys = dataSource.map((item, index) => index.toString());
-    setSelectedRowKeys(allKeys);
+    const allIds = dataSource.map(item => item.track.id); // Extracting track IDs for all items
+    setSelectedRowKeys(allIds); // Setting all track IDs as selected row keys
+  };
+
+  const handleSubmit = async () => {
+    const hide = message.loading('Loading');
+    try {
+     console.log("selectedRowKeys",selectedRowKeys);
+      await addSongs(selectedRowKeys);
+      hide();
+      return true;
+    } catch (error) {
+      hide();
+      return false;
+    }
   };
 
   return (
@@ -54,6 +67,7 @@ export default () => {
           <Button
             key="addToPlaylist"
             type="primary"
+            onClick={handleSubmit}
             style={{
               backgroundColor: '#D635A9',
             }}
@@ -94,8 +108,11 @@ export default () => {
         </div>
       }
       rowSelection={{
-        selectedRowKeys,
-        onChange: (keys: Key[]) => setSelectedRowKeys(keys),
+        // selectedRowKeys,
+        onChange: (selectedRowKeys, selectedRows) => {
+          const selectedIds = selectedRows.map(row => row.track.id); // Extracting track IDs from selected rows
+          setSelectedRowKeys(selectedIds); // Setting the selected IDs as selected row keys
+        },
       }}
       dataSource={dataSource}
     />
