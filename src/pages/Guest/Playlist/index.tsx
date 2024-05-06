@@ -1,6 +1,6 @@
-import { getSongs } from '@/services/ant-design-pro/api';
-import { DeleteTwoTone } from '@ant-design/icons';
-import { Avatar, Divider, List } from 'antd';
+import { getGuestSongs, requestSongs } from '@/services/ant-design-pro/api';
+import { PlayCircleTwoTone, PlusCircleTwoTone } from '@ant-design/icons';
+import { Avatar, Col, Divider, List, Row, message } from 'antd';
 import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
@@ -8,12 +8,24 @@ const PlayList: React.FC = () => {
   const [dataSource, setDataSource] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const handleAdd = async (id: { [key: string]: any } | undefined) => {
+    const hide = message.loading('Loading');
+    try {
+      await requestSongs(id);
+      hide();
+      return true;
+    } catch (error) {
+      hide();
+      return false;
+    }
+  };
+
   const fetchData = () => {
     if (loading) {
       return;
     }
     setLoading(true);
-    getSongs()
+    getGuestSongs()
       .then((response) => {
         setDataSource(response.data.songs);
       })
@@ -37,10 +49,18 @@ const PlayList: React.FC = () => {
           // border: '1px solid rgba(140, 140, 140, 0.35)',
         }}
       >
-        <h3>Current playlist</h3>
+        <Row justify="space-evenly" style={{ padding: '10px' }}>
+          <Col span={12}>Available tracks</Col>
+          <Col span={12} style={{ textAlign: 'right' }}>
+            <a href='/guestUser/tracks'>
+            See All
+            </a>
+          </Col>
+        </Row>
+
         <InfiniteScroll
           dataLength={dataSource.length}
-          next={fetchData}
+          // next={fetchData}
           hasMore={dataSource.length < 15}
           // loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
           endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
@@ -56,7 +76,11 @@ const PlayList: React.FC = () => {
                   description={item.artistName}
                 />
                 <div>
-                  <DeleteTwoTone twoToneColor="#eb2f96" />
+                {item?.requestData?.isRequested ? (
+                    <PlayCircleTwoTone twoToneColor="#ef3bf5" style={{ fontSize: '20px' }} />
+                  ) : (
+                    <PlusCircleTwoTone twoToneColor="#5e42ad" style={{ fontSize: '20px' }} onClick={() => handleAdd(item.id)}/>
+                  )}
                 </div>
               </List.Item>
             )}

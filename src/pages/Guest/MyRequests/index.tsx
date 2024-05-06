@@ -1,5 +1,5 @@
-import { getSongs } from '@/services/ant-design-pro/api';
-import { DeleteTwoTone } from '@ant-design/icons';
+import { getMyRequest } from '@/services/ant-design-pro/api';
+import { CheckCircleTwoTone, ClockCircleTwoTone } from '@ant-design/icons';
 import { Avatar, Divider, List } from 'antd';
 import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -13,9 +13,9 @@ const PlayList: React.FC = () => {
       return;
     }
     setLoading(true);
-    getSongs()
+    getMyRequest()
       .then((response) => {
-        setDataSource(response.data.songs);
+        setDataSource(response.data);
       })
       .catch(() => {
         setLoading(false);
@@ -33,14 +33,24 @@ const PlayList: React.FC = () => {
         style={{
           // height: 300,
           overflow: 'auto',
-          padding: '0 7px',
+          padding: '16px 20px',
           // border: '1px solid rgba(140, 140, 140, 0.35)',
         }}
       >
-        <h3>Current playlist</h3>
+        <h3>My Requests</h3>
+        <p
+          style={{
+            color: '#B6B6B6',
+            paddingBottom: '10px',
+            fontSize: '13px',
+          }}
+        >
+          All requested songs
+        </p>
+
         <InfiniteScroll
           dataLength={dataSource.length}
-          next={fetchData}
+          // next={fetchData}
           hasMore={dataSource.length < 15}
           // loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
           endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
@@ -51,12 +61,16 @@ const PlayList: React.FC = () => {
             renderItem={(item) => (
               <List.Item key={item.songName}>
                 <List.Item.Meta
-                  avatar={<Avatar src={item.imageUrl} size={50}/>}
+                  avatar={<Avatar src={item.imageUrl} size={50} />}
                   title={item.songName}
                   description={item.artistName}
                 />
                 <div>
-                  <DeleteTwoTone twoToneColor="#eb2f96" />
+                  {item?.isPlayed ? (
+                    <CheckCircleTwoTone twoToneColor="#ef3bf5" style={{ fontSize: '20px' }} />
+                  ) : (
+                    <ClockCircleTwoTone twoToneColor="#5e42ad" style={{ fontSize: '20px' }} />
+                  )}
                 </div>
               </List.Item>
             )}

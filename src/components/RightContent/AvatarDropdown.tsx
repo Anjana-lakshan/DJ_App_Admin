@@ -1,4 +1,4 @@
-import { outLogin } from '@/services/ant-design-pro/api';
+import { clearLocalStorage, outLogin } from '@/services/ant-design-pro/api';
 import { LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
 import { history, useModel } from '@umijs/max';
 import { Spin } from 'antd';
@@ -69,10 +69,12 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu, childre
         flushSync(() => {
           setInitialState((s) => ({ ...s, currentUser: undefined }));
         });
-        loginOut();
+        clearLocalStorage()
+      history.push(`/user/login`);
+        // loginOut();
         return;
       }
-      history.push(`/account/${key}`);
+      
     },
     [setInitialState],
   );

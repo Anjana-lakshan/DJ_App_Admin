@@ -1,4 +1,4 @@
-import { login, setToken } from '@/services/ant-design-pro/api';
+import { login, setAdminToken, setGuestToken } from '@/services/ant-design-pro/api';
 import { getFakeCaptcha } from '@/services/ant-design-pro/login';
 import {
   AlipayCircleOutlined,
@@ -122,7 +122,7 @@ const Login: React.FC = () => {
       const msg = await login({ ...values });
       // if (msg.status === 'ok') {
       console.log('msg' + msg.token);
-      setToken(msg.token);
+      setAdminToken(msg.token);
       await fetchUserInfo();
       const defaultLoginSuccessMessage = intl.formatMessage({
         id: 'pages.login.success',
@@ -132,11 +132,21 @@ const Login: React.FC = () => {
 
       // const urlParams = new URL(window.location.href).searchParams;
       // history.push(urlParams.get('redirect') || '/');path: '/list',
-      history.push('/home');
+      // setAdminToken(msg.token);
+      // history.push('/guestUser/home');
+      // setAdminToken(msg.token);
+      if(msg.userRole === 'Admin'){
+        setAdminToken(msg.token);
+        history.push('/home');
+      }else if (msg.userRole === 'Guest'){
+        // setAdminToken(msg.token);
+        history.push('/guestUser/home');
+      }
+        
       return;
       // }
       console.log(msg);
-      // 如果失败去设置用户错误信息
+
       setUserLoginState(msg);
     } catch (error) {
       const defaultLoginFailureMessage = intl.formatMessage({
@@ -177,6 +187,7 @@ const Login: React.FC = () => {
             padding: '32px 0',
           }}
         >
+           <div style={{height:'50px'}}></div>
           <LoginForm
             contentStyle={{
               minWidth: 280,
@@ -232,6 +243,7 @@ const Login: React.FC = () => {
                 })}
               />
             )}
+            <div style={{height:'50px'}}></div>
             {type === 'account' && (
               <>
                 <ProFormText
@@ -244,6 +256,7 @@ const Login: React.FC = () => {
                     id: 'pages.login.username.placeholder',
                     defaultMessage: 'Username: admin or user',
                   })}
+                 style={{paddingTop: '10px'}}
                   rules={[
                     {
                       required: true,

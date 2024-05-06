@@ -1,14 +1,14 @@
 // @ts-ignore
 /* eslint-disable */
 import env from '@/constants/env';
-import { request } from '@umijs/max';
+import { request ,history} from '@umijs/max';
 import { message } from 'antd';
 
 // const API_URL = process.env.API_URL;
 const { API_URL } = env;
 /** 获取当前的用户 GET /api/currentUser */
 export async function currentUser(options?: { [key: string]: any }) {
-  const token = getToken();
+  const token = getAdminToken();
   return request<{
     data: API.CurrentUser;
   }>(API_URL + '/users/currentuser', {
@@ -41,8 +41,8 @@ export async function login(body: API.LoginParams, options?: { [key: string]: an
   });
 }
 
-function getToken() {
-  var token = localStorage.getItem('token');
+function getAdminToken() {
+  var token = localStorage.getItem('adminToken');
   if (token) {
     return token;
   }
@@ -50,18 +50,32 @@ function getToken() {
   return '';
 }
 
-export function setToken(token: string) {
-  localStorage.setItem('token', token);
+// function getGuestToken() {
+//   var token = localStorage.getItem('guestToken');
+//   if (token) {
+//     return token;
+//   }
+
+//   return '';
+// }
+
+export function setAdminToken(token: string) {
+  localStorage.setItem('adminToken', token);
 }
 
+// export function setGuestToken(token: string) {
+//   localStorage.setItem('guestToken', token);
+// }
+
 export function clearLocalStorage() {
+  history.push(`/user/login`);
   localStorage.clear();
 }
 
 /** GET Users */
 export async function getUsers(
 ) {
-  const token = getToken();
+  const token = getAdminToken();
   return request<API.Customers>(`${API_URL}/users/allusers`, {
     method: 'GET',
     headers: {
@@ -76,7 +90,7 @@ export async function getUsers(
 /** GET Users */
 export async function getSongs(
 ) {
-  const token = getToken();
+  const token = getAdminToken();
   return request<API.Customers>(`${API_URL}/songs/allsongs`, {
     method: 'GET',
     headers: {
@@ -91,7 +105,7 @@ export async function getSongs(
 /** GET Spotify Auth */
 export async function getspotifyAuth(
 ) {
-  const token = getToken();
+  const token = getAdminToken();
   return request<API.Customers>(`http://localhost:3000/spotifyAuth`, {
     method: 'GET',
     headers: {
@@ -106,7 +120,7 @@ export async function getspotifyAuth(
 /** GET AllCategories */
 export async function getAllCategories(
 ) {
-  const token = getToken();
+  const token = getAdminToken();
   return request<API.Customers>(`${API_URL}/songs/allcategories`, {
     method: 'GET',
     headers: {
@@ -122,7 +136,7 @@ export async function getAllCategories(
 export async function getAllCategoriesPlaylist(
   id:string
 ) {
-  const token = getToken();
+  const token = getAdminToken();
   return request<API.Customers>(`${API_URL}/songs/categories/${id}`, {
     method: 'GET',
     headers: {
@@ -138,7 +152,7 @@ export async function getAllCategoriesPlaylist(
 export async function getAllCategoriesPlaylistSongs(
   id:string
 ) {
-  const token = getToken();
+  const token = getAdminToken();
   return request<API.Customers>(`${API_URL}/songs/categoryplaylists/${id}`, {
     method: 'GET',
     headers: {
@@ -154,7 +168,7 @@ export async function getAllCategoriesPlaylistSongs(
 export async function addSongs(
   body?: { [key: string]: any },
 ) {
-  const token = getToken();
+  const token = getAdminToken();
   return request(`${API_URL}/songs/addtracks`, {
     method: 'POST',
     headers: {
@@ -169,6 +183,74 @@ export async function addSongs(
     } else {
       message.error(response.errorMessage);
     }
+  });
+}
+
+//Guest Api
+
+/** GET Guest Songs*/
+export async function getGuestSongs(
+) {
+  const token = getAdminToken();
+  return request<API.Customers>(`${API_URL}/songs/allsongs`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+
+
+  });
+}
+
+/** Update Playlist */
+export async function requestSongs(
+  id?: { [key: string]: any },
+) {
+  const token = getAdminToken();
+  return request(`${API_URL}/songs/guestuser/requestsong/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  }).then((response) => {
+    if (response.errorMessage === null) {
+      message.success(response.message).then(() => {
+      });
+    } else {
+      message.error(response.errorMessage);
+    }
+  });
+}
+
+/** GET Guest Songs*/
+export async function getGuestDJQue(
+) {
+  const token = getAdminToken();
+  return request<API.Customers>(`${API_URL}/songs/getbpmque`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+
+
+  });
+}
+
+/** GET MyRequest Songs*/
+export async function getMyRequest(
+) {
+  const token = getAdminToken();
+  return request<API.Customers>(`${API_URL}/songs/guestuser/myrequests`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+
+
   });
 }
 

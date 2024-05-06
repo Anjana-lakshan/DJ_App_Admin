@@ -28,7 +28,7 @@ const Home: React.FC = () => {
     history.push('/categories');
   };
   const handleClickPlaylist = () => {
-    history.push('/users');
+    // history.push('/users');
   };
 
   return (

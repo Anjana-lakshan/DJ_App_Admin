@@ -52,6 +52,34 @@ export default [
   //   component: './SongList',
   // },
   {
+    path: '/guestUser',
+    name: 'guestUser',
+    access: 'canGuestUser',
+    layout: false,
+    routes: [
+      {
+        path: '/guestUser/home',
+        name: 'UserHome',
+        component: './Guest/index',
+      },
+      {
+        path: '/guestUser/tracks',
+        name: 'Tracks',
+        component: './Guest/Playlist/availableTracks',
+      },
+      {
+        path: '/guestUser/DjQue',
+        name: 'UserDj Que',
+        component: './Guest/DjQue',
+      },
+      {
+        path: '/guestUser/MyRequest',
+        name: 'My Request',
+        component: './Guest/MyRequests/index.tsx',
+      },
+    ],
+  },
+  {
     name: 'Categories',
     path: '/categories',
     component: './Categories/index',
