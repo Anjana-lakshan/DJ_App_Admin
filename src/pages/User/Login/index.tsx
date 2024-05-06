@@ -141,6 +141,9 @@ const Login: React.FC = () => {
       }else if (msg.userRole === 'Guest'){
         // setAdminToken(msg.token);
         history.push('/guestUser/home');
+      }else if (msg.userRole === 'DJ'){
+        // setAdminToken(msg.token);
+        history.push('/dj/home');
       }
         
       return;

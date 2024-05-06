@@ -80,6 +80,24 @@ export default [
     ],
   },
   {
+    path: '/dj',
+    name: 'DJ',
+    access: 'canDj',
+    layout: false,
+    routes: [
+      {
+        path: '/dj/home',
+        name: 'DjHome',
+        component: './Dj/index',
+      },
+      {
+        path: '/dj/requestSongs',
+        name: 'Request Songs',
+        component: './Dj/RequestQue/index',
+      },
+    ],
+  },
+  {
     name: 'Categories',
     path: '/categories',
     component: './Categories/index',
