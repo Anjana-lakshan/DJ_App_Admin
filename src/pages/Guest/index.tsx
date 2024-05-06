@@ -13,7 +13,7 @@ const Home: React.FC = () => {
     getSongs().then((response) => {
       setDataSource(response.data.songs);
     });
-    getspotifyAuth();
+    // getspotifyAuth();
   };
 
   useEffect(() => {
