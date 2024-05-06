@@ -1,6 +1,6 @@
-import { getSongs } from '@/services/ant-design-pro/api';
+import { deleteSong, getSongs, requestSongs } from '@/services/ant-design-pro/api';
 import { DeleteTwoTone } from '@ant-design/icons';
-import { Avatar, Divider, List } from 'antd';
+import { Avatar, Divider, List, message } from 'antd';
 import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
@@ -25,6 +25,18 @@ const PlayList: React.FC = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const handleDelete = async (id: { [key: string]: any } | undefined) => {
+    const hide = message.loading('Deleting');
+    try {
+      await deleteSong(id);
+      hide();
+      return true;
+    } catch (error) {
+      hide();
+      return false;
+    }
+  };
 
   return (
     <>
@@ -56,7 +68,7 @@ const PlayList: React.FC = () => {
                   description={item.artistName}
                 />
                 <div>
-                  <DeleteTwoTone twoToneColor="#eb2f96" />
+                  <DeleteTwoTone twoToneColor="#eb2f96" onClick={() => handleDelete(item.id)}/>
                 </div>
               </List.Item>
             )}

@@ -1,4 +1,4 @@
-import { login, setAdminToken, setGuestToken } from '@/services/ant-design-pro/api';
+import { login, setAdminToken } from '@/services/ant-design-pro/api';
 import { getFakeCaptcha } from '@/services/ant-design-pro/login';
 import {
   AlipayCircleOutlined,
@@ -8,14 +8,9 @@ import {
   UserOutlined,
   WeiboCircleOutlined,
 } from '@ant-design/icons';
-import {
-  LoginForm,
-  ProFormCaptcha,
-  ProFormCheckbox,
-  ProFormText,
-} from '@ant-design/pro-components';
+import { LoginForm, ProFormCaptcha, ProFormText } from '@ant-design/pro-components';
 import { FormattedMessage, Helmet, SelectLang, history, useIntl, useModel } from '@umijs/max';
-import { Alert, ConfigProvider, Tabs, message } from 'antd';
+import { Alert, ConfigProvider, message } from 'antd';
 import { createStyles } from 'antd-style';
 import en_US from 'antd/es/locale/en_US';
 import React, { useState } from 'react';
@@ -135,17 +130,17 @@ const Login: React.FC = () => {
       // setAdminToken(msg.token);
       // history.push('/guestUser/home');
       // setAdminToken(msg.token);
-      if(msg.userRole === 'Admin'){
+      if (msg.userRole === 'Admin') {
         setAdminToken(msg.token);
         history.push('/home');
-      }else if (msg.userRole === 'Guest'){
+      } else if (msg.userRole === 'Guest') {
         // setAdminToken(msg.token);
         history.push('/guestUser/home');
-      }else if (msg.userRole === 'DJ'){
+      } else if (msg.userRole === 'DJ') {
         // setAdminToken(msg.token);
         history.push('/dj/home');
       }
-        
+
       return;
       // }
       console.log(msg);
@@ -163,16 +158,15 @@ const Login: React.FC = () => {
   const { status, type: loginType } = userLoginState;
 
   return (
-    <ConfigProvider locale={en_US}
-    theme={{
-      token: {
-        // Seed Token
-        colorPrimary: '#D635A9',
-
-      },
-    }}
+    <ConfigProvider
+      locale={en_US}
+      theme={{
+        token: {
+          // Seed Token
+          colorPrimary: '#D635A9',
+        },
+      }}
     >
-   
       <div className={styles.container}>
         <Helmet>
           <title>
@@ -190,7 +184,7 @@ const Login: React.FC = () => {
             padding: '32px 0',
           }}
         >
-           <div style={{height:'50px'}}></div>
+          <div style={{ height: '50px' }}></div>
           <LoginForm
             contentStyle={{
               minWidth: 280,
@@ -246,7 +240,7 @@ const Login: React.FC = () => {
                 })}
               />
             )}
-            <div style={{height:'50px'}}></div>
+            <div style={{ height: '50px' }}></div>
             {type === 'account' && (
               <>
                 <ProFormText
@@ -259,7 +253,7 @@ const Login: React.FC = () => {
                     id: 'pages.login.username.placeholder',
                     defaultMessage: 'Username: admin or user',
                   })}
-                 style={{paddingTop: '10px'}}
+                  style={{ paddingTop: '10px' }}
                   rules={[
                     {
                       required: true,
@@ -379,31 +373,47 @@ const Login: React.FC = () => {
                 />
               </>
             )}
-            <div
+            {/* <div
               style={{
                 marginBottom: 24,
+                color:'#ffff',
+                
               }}
             >
               <ProFormCheckbox noStyle name="autoLogin" style={{color:'#ffff'}}>
                 <FormattedMessage id="pages.login.rememberMe" defaultMessage="自动登录" />
               </ProFormCheckbox>
               
-            </div>
+            </div> */}
             <div
               style={{
-                marginBottom: 24,
-                marginTop: 20,
-                alignItems:'right'
+                marginBottom: 10,
+                marginTop: 70,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
             >
-          <a
-                style={{color:'#ffff',float: 'right'}}
-              >
-                <FormattedMessage id="pages.login.forgotPassword" defaultMessage="Forgot Password?" />
+              <a style={{ color: '#ffff', float: 'none' }}>
+                <FormattedMessage
+                  id="pages.login.forgotPassword"
+                  defaultMessage="Forgot Password?"
+                />
               </a>
-              </div>
+            </div>
+            <div
+  style={{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingBottom: 30 
+  }}
+>
+  <p style={{ color: '#ffff', marginRight: '10px' }}>Don&lsquo;t have an account?</p>
+  <a style={{ color: '#ffff' ,paddingBottom: 15 }}>Sign Up</a>
+</div>
+
           </LoginForm>
-          
         </div>
         {/* <Footer /> */}
       </div>

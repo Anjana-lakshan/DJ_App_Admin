@@ -186,6 +186,28 @@ export async function addSongs(
   });
 }
 
+/** Delete Song */
+export async function deleteSong(
+  id?: { [key: string]: any },
+) {
+  const token = getAdminToken();
+  return request(`${API_URL}/songs/deletetracks/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  }).then((response) => {
+    if (response.errorMessage === null) {
+      message.success(response.message).then(() => {
+      });
+    } else {
+      message.error(response.errorMessage);
+    }
+  });
+}
+
+
 //Guest Api
 
 /** GET Guest Songs*/

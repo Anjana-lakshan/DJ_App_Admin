@@ -1,6 +1,6 @@
 import { getSongs, getspotifyAuth } from '@/services/ant-design-pro/api';
 import { ProCard, ProFormText } from '@ant-design/pro-components';
-import { ConfigProvider } from 'antd';
+import { Col, ConfigProvider, Row } from 'antd';
 import React, { useEffect, useState } from 'react';
 import PlayList from './Home/Playlist';
 import { history } from '@umijs/max';
@@ -60,7 +60,7 @@ const Home: React.FC = () => {
           }
         `}
       </style>
-      <ProCard gutter={20} title="" style={{ background: 'linear-gradient(to right, #5e42ad, #0F0C39)' }}>
+      {/* <ProCard gutter={20} title="" style={{ background: 'linear-gradient(to right, #5e42ad, #0F0C39)' }}>
   <ProCard colSpan={12} layout="center" bordered onClick={handleClickUsers}>
     Users
   </ProCard>
@@ -76,7 +76,69 @@ const Home: React.FC = () => {
           New release
         </ProCard>
       </ProCard>
-      <ProFormText width="md" name="name" label="" placeholder="Search your preferred songs!" />
+      <ProFormText width="md" name="name" label="" placeholder="Search your preferred songs!" /> */}
+     
+
+      <div
+        style={{
+          background: 'linear-gradient(to right, #5e42ad, #0F0C39)',
+          borderRadius: '20px 20px 20px 20px',
+          marginBottom: 20,
+        }}
+      >
+        
+        <Row justify="end" style={{ padding: '10px' }}>
+          <Col span={12} style={{ textAlign: 'right', paddingTop: '50px' }}>
+            <p
+              style={{
+                color: '#ffff',
+                fontSize: '14px',
+                fontWeight: 'bold',
+              }}
+            >
+              Hi, Jeff!
+            </p>
+          </Col>
+          <Col span={12} style={{ textAlign: 'right' }}>
+            <img alt="logo" src="/icons/banner_icon.svg" height={'100px'} />
+          </Col>
+        </Row>
+        <Row justify="space-around" gutter={[16, 16]} style={{ padding: '10px' }}>
+          <Col span={12}>
+            <ProCard colSpan={8} layout="center" bordered onClick={handleClickUsers}>
+            Users
+            </ProCard>
+          </Col>
+          <Col span={12}>
+            <ProCard colSpan={8} layout="center" bordered onClick={handleClickPlaylist}>
+            Playlist
+            </ProCard>
+          </Col>
+        </Row>
+        <Row justify="space-between" gutter={[16, 16]} style={{ padding: '10px' }}>
+          <Col span={12}>
+            <ProCard colSpan={12} layout="center" bordered onClick={handleClickCategory}>
+            Categories
+            </ProCard>
+          </Col>
+          <Col span={12}>
+            <ProCard colSpan={12} layout="center" bordered >
+            New release
+            </ProCard>
+          </Col>
+        </Row>
+
+        <Row style={{ padding: '10px' }}>
+          <Col span={24}>
+            <ProFormText
+              width="md"
+              name="name"
+              label=""
+              placeholder="Search your preferred songs!"
+            />
+          </Col>
+        </Row>
+      </div>
       <PlayList />
     </ConfigProvider>
   );
