@@ -1,4 +1,5 @@
-// import { AvatarDropdown, AvatarName } from '@/components';
+import { AvatarDropdown, AvatarName } from './components'
+// import {  } from '@/components';
 import { currentUser as queryCurrentUser } from '@/services/ant-design-pro/api';
 import type { Settings as LayoutSettings } from '@ant-design/pro-components';
 import type { RunTimeLayoutConfig } from '@umijs/max';
@@ -51,10 +52,10 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
     // actionsRender: () => [<Question key="doc" />, <SelectLang key="SelectLang" />],
     avatarProps: {
       src: initialState?.currentUser?.avatar,
-      // title: <AvatarName />,
-      // render: (_, avatarChildren) => {
-      //   return <AvatarDropdown>{avatarChildren}</AvatarDropdown>;
-      // },
+      title: <AvatarName />,
+      render: (_, avatarChildren) => {
+        return <AvatarDropdown>{avatarChildren}</AvatarDropdown>;
+      },
     },
     waterMarkProps: {
       // content: initialState?.currentUser?.name,
