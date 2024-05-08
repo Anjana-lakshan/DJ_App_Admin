@@ -1,3 +1,3 @@
 export default {
-  API_URL : 'http://localhost:3000/djapi/v1',
+  API_URL : 'https://dj-jeff.vercel.app/djapi/v1',
 };
