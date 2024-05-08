@@ -25,7 +25,7 @@ export async function getInitialState(): Promise<{
       const msg = await queryCurrentUser({
         skipErrorHandler: true,
       });
-      console.log(msg.data.user);
+      // console.log(msg.data.user);
       return msg.data.user;
     } catch (error) {
       history.push(loginPath);
