@@ -1,7 +1,7 @@
 import { clearLocalStorage, getSongs, getspotifyAuth } from '@/services/ant-design-pro/api';
 import { LogoutOutlined } from '@ant-design/icons';
 import { ProCard, ProFormText } from '@ant-design/pro-components';
-import { history } from '@umijs/max';
+import { history, useModel } from '@umijs/max';
 import { Col, ConfigProvider, Row } from 'antd';
 import React, { useEffect, useState } from 'react';
 import PlayList from './Playlist/index.tsx';
