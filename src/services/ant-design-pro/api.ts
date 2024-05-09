@@ -106,7 +106,7 @@ export async function getSongs(
 export async function getspotifyAuth(
 ) {
   const token = getAdminToken();
-  return request<API.Customers>(`http://localhost:3000/spotifyAuth`, {
+  return request<API.Customers>(`https://dj-jeff.vercel.app/spotifyAuth`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -191,12 +191,13 @@ export async function deleteSong(
   id?: { [key: string]: any },
 ) {
   const token = getAdminToken();
-  return request(`${API_URL}/songs/deletetracks/${id}`, {
-    method: 'PUT',
+  return request(`${API_URL}/songs/deletetracks`, {
+    method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
+    data: [id],
   }).then((response) => {
     if (response.errorMessage === null) {
       message.success(response.message).then(() => {

@@ -30,6 +30,7 @@ const PlayList: React.FC = () => {
     const hide = message.loading('Deleting');
     try {
       await deleteSong(id);
+      fetchData();
       hide();
       return true;
     } catch (error) {
@@ -47,6 +48,8 @@ const PlayList: React.FC = () => {
           overflow: 'auto',
           padding: '0 7px',
           // border: '1px solid rgba(140, 140, 140, 0.35)',
+          marginLeft: 15,
+          marginTop: 20
         }}
       >
         <h3>Current playlist</h3>
@@ -68,7 +71,7 @@ const PlayList: React.FC = () => {
                   description={item.artistName}
                 />
                 <div>
-                  <DeleteTwoTone twoToneColor="#eb2f96" onClick={() => handleDelete(item.id)}/>
+                  <DeleteTwoTone twoToneColor="#eb2f96" onClick={() => handleDelete(item.spotifyId)}/>
                 </div>
               </List.Item>
             )}

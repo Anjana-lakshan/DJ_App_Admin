@@ -28,7 +28,10 @@ const Home: React.FC = () => {
     history.push('/categories');
   };
   const handleClickPlaylist = () => {
-    // history.push('/users');
+    history.push('/admin/playList');
+  };
+  const handleClickDjQue = () => {
+    history.push('/admin/djQue');
   };
 
   return (
@@ -83,7 +86,7 @@ const Home: React.FC = () => {
         style={{
           background: 'linear-gradient(to right, #5e42ad, #0F0C39)',
           borderRadius: '20px 20px 20px 20px',
-          marginBottom: 20,
+          // marginBottom: 20,
         }}
       >
         
@@ -122,8 +125,8 @@ const Home: React.FC = () => {
             </ProCard>
           </Col>
           <Col span={12}>
-            <ProCard colSpan={12} layout="center" bordered >
-            New release
+            <ProCard colSpan={12} layout="center" bordered onClick={handleClickDjQue}>
+            DJ’S Que
             </ProCard>
           </Col>
         </Row>
@@ -139,7 +142,9 @@ const Home: React.FC = () => {
           </Col>
         </Row>
       </div>
+    
       <PlayList />
+
     </ConfigProvider>
   );
 };

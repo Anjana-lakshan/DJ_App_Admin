@@ -77,7 +77,7 @@ const PlayList: React.FC = () => {
                   {item?.requestData?.isRequested ? (
                     <PlayCircleTwoTone twoToneColor="#ef3bf5" style={{ fontSize: '20px' }} />
                   ) : (
-                    <PlusCircleTwoTone twoToneColor="#5e42ad" style={{ fontSize: '20px' }} onClick={() => handleAdd(item.id)}/>
+                    <PlusCircleTwoTone twoToneColor="#5e42ad" style={{ fontSize: '20px' }} onClick={() => handleAdd(item.spotifyId)}/>
                   )}
                 </div>
               </List.Item>

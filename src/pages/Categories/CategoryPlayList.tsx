@@ -85,10 +85,10 @@ const Categories: React.FC = () => {
                       src={item?.images && item.images.length > 0 ? item.images[0].url : null}
                     />
                   }
-                  title={item?.name ?? '-'}
+                  // title={item?.name ?? '-'}
                 >
-                  <div style={{ height: '50px', overflowY: 'auto' }}>
-                    {item?.description ?? '-'}
+                  <div style={{ height: '30px', overflowY: 'auto' }}>
+                    {item?.name ?? '-'}
                   </div>
                 </Card>
               </List.Item>

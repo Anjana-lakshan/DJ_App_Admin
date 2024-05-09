@@ -12,6 +12,7 @@ const PlayList: React.FC = () => {
     const hide = message.loading('Loading');
     try {
       await requestSongs(id);
+      fetchData();
       hide();
       return true;
     } catch (error) {
@@ -79,7 +80,7 @@ const PlayList: React.FC = () => {
                 {item?.requestData?.isRequested ? (
                     <PlayCircleTwoTone twoToneColor="#ef3bf5" style={{ fontSize: '20px' }} />
                   ) : (
-                    <PlusCircleTwoTone twoToneColor="#5e42ad" style={{ fontSize: '20px' }} onClick={() => handleAdd(item.id)}/>
+                    <PlusCircleTwoTone twoToneColor="#5e42ad" style={{ fontSize: '20px' }} onClick={() => handleAdd(item.spotifyId)}/>
                   )}
                 </div>
               </List.Item>

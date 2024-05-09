@@ -104,6 +104,18 @@ export default [
     layout: false,
   },
   {
+    name: 'DjQue',
+    path: '/admin/djQue',
+    component: './Admin/DjQue/index',
+    layout: false,
+  },
+  {
+    name: 'Play List',
+    path: '/admin/playList',
+    component: './Home/Playlist',
+    layout: false,
+  },
+  {
     name: 'Category Play List',
     path: '/categories/playList/:categoryid/:categoryname',
     component: './Categories/CategoryPlayList',
