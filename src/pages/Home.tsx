@@ -3,10 +3,12 @@ import { ProCard, ProFormText } from '@ant-design/pro-components';
 import { Col, ConfigProvider, Row } from 'antd';
 import React, { useEffect, useState } from 'react';
 import PlayList from './Home/Playlist';
-import { history } from '@umijs/max';
+import { history, useModel } from '@umijs/max';
 
 const Home: React.FC = () => {
   const [dataSource, setDataSource] = useState(null);
+  const { initialState } = useModel('@@initialState');
+  const { currentUser } = initialState || {};
 
   const fetchData = () => {
     getSongs().then((response) => {
@@ -99,7 +101,7 @@ const Home: React.FC = () => {
                 fontWeight: 'bold',
               }}
             >
-              Hi, Jeff!
+              Hi, {currentUser?.name}!
             </p>
           </Col>
           <Col span={12} style={{ textAlign: 'right' }}>

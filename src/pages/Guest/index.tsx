@@ -8,7 +8,9 @@ import PlayList from './Playlist/index.tsx';
 
 const Home: React.FC = () => {
   const [dataSource, setDataSource] = useState(null);
-
+  const { initialState } = useModel('@@initialState');
+  const { currentUser } = initialState || {};
+  
   const fetchData = () => {
     getSongs().then((response) => {
       setDataSource(response.data.songs);
@@ -86,7 +88,7 @@ const Home: React.FC = () => {
                 fontWeight: 'bold',
               }}
             >
-              Hi, Kalindu!
+              Hi, {currentUser?.name}!
             </p>
           </Col>
           <Col span={12} style={{ textAlign: 'right' }}>

@@ -1,14 +1,16 @@
 import { clearLocalStorage, getSongs, getspotifyAuth } from '@/services/ant-design-pro/api';
 import { LogoutOutlined } from '@ant-design/icons';
 import { ProCard, ProFormText } from '@ant-design/pro-components';
-import { history } from '@umijs/max';
+import { history, useModel } from '@umijs/max';
 import { Col, ConfigProvider, Row } from 'antd';
 import React, { useEffect, useState } from 'react';
 import PlayList from './RequestQue/index.tsx';
 
 const Home: React.FC = () => {
   const [dataSource, setDataSource] = useState(null);
-
+  const { initialState } = useModel('@@initialState');
+  const { currentUser } = initialState || {};
+  
   const fetchData = () => {
     getSongs().then((response) => {
       setDataSource(response);
@@ -85,7 +87,7 @@ const Home: React.FC = () => {
                 fontWeight: 'bold',
               }}
             >
-              Hi, Dj Anjana!
+              Hi, Dj {currentUser?.name}!
             </p>
           </Col>
           <Col span={12} style={{ textAlign: 'right' }}>
