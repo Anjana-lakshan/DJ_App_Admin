@@ -95,6 +95,11 @@ export default [
         name: 'Request Songs',
         component: './Dj/RequestQue/index',
       },
+      {
+        path: '/dj/allSongs',
+        name: 'All Songs',
+        component: './Dj/AllSongs/playlist',
+      },
     ],
   },
   {

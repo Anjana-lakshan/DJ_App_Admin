@@ -41,7 +41,7 @@ const PlayList: React.FC = () => {
      
         <p  style={{
               fontSize: '15px',
-            }}>Available tracks</p>
+            }}>Available Tracks</p>
         
 
         <InfiniteScroll

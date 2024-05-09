@@ -4,7 +4,7 @@ import { ProCard, ProFormText } from '@ant-design/pro-components';
 import { history } from '@umijs/max';
 import { Col, ConfigProvider, Row } from 'antd';
 import React, { useEffect, useState } from 'react';
-import PlayList from './playlist.tsx';
+import PlayList from './RequestQue/index.tsx';
 
 const Home: React.FC = () => {
   const [dataSource, setDataSource] = useState(null);
@@ -25,7 +25,7 @@ const Home: React.FC = () => {
     history.push('/dj/requestSongs');
   };
   const handleClickDJQue = () => {
-    // history.push('/guestUser/DjQue');
+    history.push('/dj/allSongs');
   };
   const handleClickPlaylist = () => {
     // history.push('/users');
