@@ -73,7 +73,7 @@ const PlayList: React.FC = () => {
                     <ClockCircleTwoTone twoToneColor="#bab6ba" style={{ fontSize: '20px' }} />
                   )}
                 </div>
-                <div style={{ margin: '7px' }}> 
+                {/* <div style={{ margin: '7px' }}> 
                 <TableDropdown
                   key="actionGroup"
                   menus={[
@@ -105,7 +105,7 @@ const PlayList: React.FC = () => {
                       },
                   ]}
                 />
-                </div>
+                </div> */}
               </List.Item>
             )}
           />

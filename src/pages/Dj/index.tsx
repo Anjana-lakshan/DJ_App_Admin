@@ -12,9 +12,9 @@ const Home: React.FC = () => {
   const { currentUser } = initialState || {};
   
   const fetchData = () => {
-    getSongs().then((response) => {
-      setDataSource(response);
-    });
+    // getSongs().then((response) => {
+    //   setDataSource(response);
+    // });
     // getspotifyAuth();
   };
 

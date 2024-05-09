@@ -1,4 +1,4 @@
-import { getGuestDJQue } from '@/services/ant-design-pro/api';
+import { getGuestDJQue, getSongs } from '@/services/ant-design-pro/api';
 import { CheckCircleTwoTone, ClockCircleTwoTone, PlayCircleTwoTone } from '@ant-design/icons';
 import { TableDropdown } from '@ant-design/pro-components';
 import { Avatar, Col, Divider, List, Row } from 'antd';
@@ -14,7 +14,7 @@ const PlayList: React.FC = () => {
       return;
     }
     setLoading(true);
-    getGuestDJQue()
+    getSongs()
       .then((response) => {
         setDataSource(response);
       })
