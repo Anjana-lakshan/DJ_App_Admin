@@ -16,7 +16,7 @@ const PlayList: React.FC = () => {
     setLoading(true);
     getSongs()
       .then((response) => {
-        setDataSource(response);
+        setDataSource(response.data?.songs);
       })
       .catch(() => {
         setLoading(false);
