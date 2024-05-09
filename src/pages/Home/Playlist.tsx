@@ -30,7 +30,13 @@ const PlayList: React.FC = () => {
     const hide = message.loading('Deleting');
     try {
       await deleteSong(id);
-      fetchData();
+      getSongs()
+      .then((response) => {
+        setDataSource(response.data.songs);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
       hide();
       return true;
     } catch (error) {

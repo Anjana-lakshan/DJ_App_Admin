@@ -30,6 +30,13 @@ const PlayList: React.FC = () => {
     const hide = message.loading('Loading');
     try {
       await requestSongs(id);
+      getGuestSongs()
+      .then((response) => {
+        setDataSource(response.data.songs);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
       hide();
       return true;
     } catch (error) {

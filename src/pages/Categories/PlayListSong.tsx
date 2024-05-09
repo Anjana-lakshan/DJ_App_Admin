@@ -4,6 +4,7 @@ import { useParams } from '@umijs/max';
 import { Button, message } from 'antd';
 import type { Key } from 'react';
 import { useEffect, useState } from 'react';
+import { history } from '@umijs/max';
 
 // const dataSource = [
 //   {
@@ -31,8 +32,8 @@ export default () => {
   }, []);
 
   const handleSelectAll = () => {
-    const allIds = dataSource.map(item => item.track.id); // Extracting track IDs for all items
-    setSelectedRowKeys(allIds); // Setting all track IDs as selected row keys
+    const firstTenIds = dataSource.slice(0, 10).map(item => item.track.id); // Extracting track IDs for all items
+    setSelectedRowKeys(firstTenIds); // Setting all track IDs as selected row keys
   };
 
   const handleSubmit = async () => {
@@ -40,6 +41,7 @@ export default () => {
     try {
      console.log("selectedRowKeys",selectedRowKeys);
       await addSongs(selectedRowKeys);
+      history.push('/home');
       hide();
       return true;
     } catch (error) {

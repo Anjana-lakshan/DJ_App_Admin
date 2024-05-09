@@ -113,10 +113,9 @@ const Login: React.FC = () => {
 
   const handleSubmit = async (values: API.LoginParams) => {
     try {
-      // 登录
       const msg = await login({ ...values });
-      // if (msg.status === 'ok') {
-      console.log('msg' + msg.token);
+      console.log(msg);
+      if (msg.errorMessage === null) {
       setAdminToken(msg.token);
       await fetchUserInfo();
       const defaultLoginSuccessMessage = intl.formatMessage({
@@ -142,8 +141,8 @@ const Login: React.FC = () => {
       }
 
       return;
-      // }
-      console.log(msg);
+      }
+      
 
       setUserLoginState(msg);
     } catch (error) {
@@ -172,7 +171,7 @@ const Login: React.FC = () => {
           <title>
             {intl.formatMessage({
               id: 'menu.login',
-              defaultMessage: '登录页',
+              defaultMessage: '',
             })}
             - {Settings.title}
           </title>
@@ -236,7 +235,7 @@ const Login: React.FC = () => {
               <LoginMessage
                 content={intl.formatMessage({
                   id: 'pages.login.accountLogin.errorMessage',
-                  defaultMessage: '账户或密码错误(admin/ant.design)',
+                  defaultMessage: '(admin/ant.design)',
                 })}
               />
             )}
@@ -346,7 +345,7 @@ const Login: React.FC = () => {
                     }
                     return intl.formatMessage({
                       id: 'pages.login.phoneLogin.getVerificationCode',
-                      defaultMessage: '获取验证码',
+                      defaultMessage: '',
                     });
                   }}
                   name="captcha"
@@ -356,7 +355,7 @@ const Login: React.FC = () => {
                       message: (
                         <FormattedMessage
                           id="pages.login.captcha.required"
-                          defaultMessage="请输入验证码！"
+                          defaultMessage=""
                         />
                       ),
                     },
@@ -368,7 +367,7 @@ const Login: React.FC = () => {
                     if (!result) {
                       return;
                     }
-                    message.success('获取验证码成功！验证码为：1234');
+                    // message.success('234');
                   }}
                 />
               </>
